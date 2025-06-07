@@ -5,18 +5,15 @@ const axios = require('axios');
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
-    axios.get(`${process.env.API_URL}post/all`, {
+    axios.get(`${process.env.API_URL}post/offset/0`, {
     headers: {
-      'token': req.cookies.blog
+      'token': req.cookies.blog,
     }
   })
   .then(function(response){            
     res.render('index', {title: 'blog', posts: response.data})
   })
-  .catch(function(error){
-
-    if(error.status == 401) res.redirect('/login');
-    
+  .catch(function(error){        
     res.render('error', {message: error, error: error});
   });
 

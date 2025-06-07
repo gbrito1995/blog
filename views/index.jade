@@ -8,4 +8,6 @@ block content
                                 span(style='color:grey; font-size: 0.8rem;') #{postDate.toLocaleString('en-US', { timeZone: 'UTC' })}
                                 h2= post.TITLE
                         section!= post.CONTENT
-                        hr                                           
+                        hr 
+        div(class='footer-button')
+                button(class='pure-button pure-button-primary')="Load more"
