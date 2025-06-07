@@ -1,8 +1,22 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+body {  
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;    
+  padding: 50px 0 0 50px;
 }
 
 a {
   color: #00B7FF;
+}
+
+.content {
+  max-width: 1200px;
+  margin: auto;
+}
+
+.menu {
+  margin-right: 1rem;
+}
+
+
+.article-class {  
+  margin-bottom: 2rem;
 }

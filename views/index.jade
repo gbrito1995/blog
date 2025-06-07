@@ -1,5 +1,11 @@
 extends layout
 
-block content
-  h1= title
-  p Welcome to #{title}
+block content   
+        each post in posts
+                - var postDate = post.CREATE_DATE
+                article(class="article-class")
+                        header
+                                span(style='color:grey; font-size: 0.8rem;') #{postDate.toLocaleString('en-US', { timeZone: 'UTC' })}
+                                h2= post.TITLE
+                        section!= post.CONTENT
+                        hr                                           

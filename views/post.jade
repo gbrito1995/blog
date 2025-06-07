@@ -1,0 +1,31 @@
+extends layout
+
+block content                                                        
+        form(class="pure-form pure-form-stacked", method="post")                       
+                fieldset
+                        if (post == null)                                
+                                input(type='text', class="pure-input-1", placeholder="Title", name="Title" required="")
+                        else
+                                input(type='text', class="pure-input-1", placeholder="Title", name="Title", value=post.TITLE required="")
+                                div(id="content_holder" style="display: none")
+                                        !=post.CONTENT
+                        section(id="mytextarea")
+                        button(style="margin-top: 1rem;" type="submit", class="pure-button pure-button-primary")="Save"
+        script.
+                function getPostContent () {                        
+                        let contentHolder = document.getElementById('content_holder');
+                        if (!contentHolder) return;
+                        tinymce.activeEditor.setContent(contentHolder.innerHTML);
+                };
+                
+                $(document).ready( function() {
+                        tinymce.init({
+                                selector: '#mytextarea',
+                                setup: function(editor) {
+                                        editor.on('init', function(e){                                                
+                                                getPostContent();                        
+                                        })
+                                },
+                                height: 500
+                        });
+                });
