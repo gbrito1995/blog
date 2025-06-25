@@ -19,4 +19,20 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.get('/post/offset/:offset(\\d+)', function(req, res, next) {
+
+    axios.get(`${process.env.API_URL}post/offset/${req.params.offset}`, {
+    headers: {
+      'token': req.cookies.blog,
+    }
+  })
+  .then(function(response){       
+    res.send(response.data);    
+  })
+  .catch(function(error){        
+    res.render('error', {message: error, error: error});
+  });
+
+});
+
 module.exports = router;

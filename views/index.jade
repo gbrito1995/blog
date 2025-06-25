@@ -1,13 +1,15 @@
 extends layout
 
-block content   
+block content
+        - var offset = 0
+        - var postObj = { offset: 0, title: "", content: ""}
         each post in posts
-                - var postDate = post.CREATE_DATE
+                - var postDate = post.CREATE_DATE                
                 article(class="article-class")
                         header
-                                span(style='color:grey; font-size: 0.8rem;') #{postDate.toLocaleString('en-US', { timeZone: 'UTC' })}
-                                h2= post.TITLE
-                        section!= post.CONTENT
+                                span(style='color:grey; font-size: 0.8rem;' id='date-section') #{postDate.toLocaleString('en-US', { timeZone: 'UTC' })}
+                                h2(id='title-section')= post.TITLE
+                        section(id='content-section')!= post.CONTENT
                         hr 
         div(class='footer-button')
-                button(class='pure-button pure-button-primary')="Load more"
+                button(class='pure-button pure-button-primary' id='load-more')="Next"
