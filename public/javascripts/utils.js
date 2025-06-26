@@ -1,5 +1,6 @@
 let offset = 0;
-let btnLoad = document.getElementById('load-more');
+let btnLoadNext = document.getElementById('load-next');
+let btnLoadPrevious = document.getElementById('load-previous');
 let titleSection = document.getElementById('title-section');
 let contentSection = document.getElementById('content-section');
 let dateSection = document.getElementById('date-section');
@@ -16,7 +17,7 @@ function loadMore(offset) {
 
 }
 
-async function loadAnother() {
+async function loadNext() {
 
     try {
         offset += 1;
@@ -34,5 +35,23 @@ async function loadAnother() {
 
 }
 
+async function loadPrevious() {
 
-btnLoad.addEventListener('click', loadAnother)
+    try {
+        offset -= 1;
+        const response = await fetch(`/post/offset/${offset}`, {method: 'get'});
+    
+        if (!response.ok) throw new Error(`Response status: ${response.status}`);
+        
+        const json = await response.json();
+
+        titleSection.innerHTML = json[0].TITLE;
+        contentSection.innerHTML = json[0].CONTENT;
+        dateSection.innerHTML = json[0].CREATE_DATE;
+
+    } catch (error) { console.log(error); }
+
+}
+
+btnLoadNext.addEventListener('click', loadNext)
+btnLoadPrevious.addEventListener('click', loadPrevious)
