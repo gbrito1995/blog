@@ -29,7 +29,7 @@ router.get('/post', function(req, res, next) {
 
     console.table(response.data)
 
-    res.render('post', {post: response.data});
+    res.render('post', {title: response.data.TITLE, post: response.data});
   })
   .catch(function(error){        
     res.render('error', {message: error, error: error});
