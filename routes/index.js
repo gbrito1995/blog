@@ -39,7 +39,17 @@ router.get('/post', function(req, res, next) {
 
 /* GET users listing. */
 router.get('/about-me', function(req, res, next) {
-  res.render('about-me', {title: 'about-me'});
+
+  axios.get(`${process.env.API_URL}about-me`)
+  .then(function(response){
+
+    console.log(response.data)
+
+    res.render('about-me', {title: 'about-me', data: response.data})
+  })
+  .catch(function(error){        
+    res.render('error', {message: error, error: error});
+  });  
 });
 
 module.exports = router;
