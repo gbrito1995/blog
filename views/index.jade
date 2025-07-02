@@ -1,16 +1,12 @@
 extends layout
 
 block content
-        - var offset = 0
-        - var postObj = { offset: 0, title: "", content: ""}
         each post in posts
-                - var postDate = post.CREATE_DATE                
+                - var postDate = post.CREATE_DATE   
+                - var postTitleUrl = post.TITLE.replace(/\s/g, '_');
                 article(class="article-class")
                         header
                                 span(style='color:grey; font-size: 0.8rem;' id='date-section') #{postDate.toLocaleString('en-US', { timeZone: 'UTC' })}
-                                h2(id='title-section')= post.TITLE
-                        section(id='content-section')!= post.CONTENT
-                        hr 
-        div(class='footer-button')
-                button(class='pure-button pure-button-primary' id='load-previous' style='margin-right: 1rem;')="Previous"
-                button(class='pure-button pure-button-primary' id='load-next')="Next"
+                                a(class='post-link' href=`post/?title=${postTitleUrl}`)
+                                        h2(id='title-section')= post.TITLE                        
+                        hr

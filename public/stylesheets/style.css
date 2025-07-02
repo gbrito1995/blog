@@ -44,6 +44,16 @@ a {
   animation: spin 1s linear infinite;
 }
 
+.post-link {
+  color: black; 
+  cursor: pointer; 
+  text-decoration: none;
+}
+
+.post-link:hover {
+  color:#00B7FF;
+}
+
 @keyframes spin {
   to { transform: rotate(360deg); }
 }
